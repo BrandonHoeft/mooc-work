@@ -16,3 +16,14 @@ class User:
         return '<User {}>'.format(self.name)
         
     
+    def watched_movies(self):
+        '''
+        return a list of movies that the user has watched
+        '''
+        watched_list = []
+        for i, movie in enumerate(self.movies):
+            if movie.watched: # movie iterable is a movie object. 
+                watched_list.append(movie.name)
+        return watched_list
+    
+    
