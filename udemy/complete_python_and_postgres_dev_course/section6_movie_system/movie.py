@@ -9,8 +9,19 @@ class Movie:
         self.watched = watched
         
     def __repr__(self):
-        '''Description of the Movie class object when it is printed 
-        after instantiation'''
+        '''
+        Description of the Movie class object when it is printed 
+        after instantiation
+        '''
         return '<Movie: {}>'.format(self.name)
-        
-        
+            
+    def create_json(self):
+        '''
+        return a dict that stores the name, genre, watched 
+        indicator for the movie
+        '''
+        return {
+            'name': self.name,
+            'genre': self.genre,
+            'watched': self.watched
+        }

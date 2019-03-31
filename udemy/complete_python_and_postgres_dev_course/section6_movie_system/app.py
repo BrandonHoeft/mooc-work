@@ -9,18 +9,16 @@ if home + desktop_rel_path not in sys.path:
     sys.path.insert(0, home+desktop_rel_path)
 #from movie import Movie # No longer need to import, because 
 from user import User
+import json # for importing json-like objects from file. 
 
-#user = User('Brandon')
-user = User.load_from_file(home + desktop_rel_path + '/Brandon.txt')
-print(user.movies)
-#user.add_movie('The Matrix', 'Sci-Fi')
-#user.add_movie('Game Night', 'Comedy')
-#user.save_to_file()
 
-#print(user) # This address is the memory address of where the user obj has been created and stored in memory.
-#my_movie = Movie('The Matrix', 'Sci-Fi', True)
-#print(my_movie)
-#user.movies.append(my_movie)
-#print(user.movies[0].name)
-#print(user.movies[0].genre)
+user = User('Brandon')
 
+user.add_movie('The Matrix', 'Sci-Fi')
+user.add_movie('Game Night', 'Comedy')
+
+print(user.json())
+
+with open(home + desktop_rel_path + '/my_file.txt', 'w') as f:
+    json.dump(user.json(), f)
+    

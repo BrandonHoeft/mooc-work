@@ -72,5 +72,11 @@ class User:
         user = cls(username) #cls stands for the User class.
         user.movies = movies
         return user
-        
+    
+    
+    def json(self):
+        return {
+                'name': self.name,
+                'movies': [movie.create_json() for movie in self.movies] # json here is an instance method of Movie objects.
+        }
             
