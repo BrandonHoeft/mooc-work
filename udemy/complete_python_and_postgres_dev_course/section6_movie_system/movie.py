@@ -31,5 +31,5 @@ class Movie:
         '''
         create a new Movie object from json data assuming the right keys
         '''
-        return cls(json_data['name'], json_data['genre'], json_data['watched'])
+        return cls(**json_data) # lecture 54. keyword argument unpacking of dicts!
     

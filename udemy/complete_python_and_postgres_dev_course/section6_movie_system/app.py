@@ -8,7 +8,7 @@ desktop_rel_path = '/Desktop/MOOC_work/udemy/complete_python_and_postgres_dev_co
 if home + desktop_rel_path not in sys.path:
     sys.path.insert(0, home+desktop_rel_path)
 #from movie import Movie # No longer need to import, because 
-#from user import User
+from user import User
 import json # for importing json-like objects from file. 
 
 
