@@ -75,8 +75,23 @@ class User:
     
     
     def json(self):
+        '''
+        return a json of the user's name, and parse the contents of each
+        of each user's movie object into a dict stored as a list of dicts. 
+        '''
         return {
                 'name': self.name,
                 'movies': [movie.create_json() for movie in self.movies] # json here is an instance method of Movie objects.
         }
             
+    @classmethod
+    def from_json(cls, json_data):
+        '''
+        Return the json data in a format to load the data into a new User instance. 
+        '''
+        user = cls(json_data['name'])
+        movies =[]
+        for mov in json_data['movies']:
+            movies.append(Movie(mov['name'], mov['genre'], mov['watched']))
+        user.movies = movies
+        return user
