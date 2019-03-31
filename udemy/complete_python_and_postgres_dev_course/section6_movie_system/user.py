@@ -1,15 +1,16 @@
 # because User module depends on Movie module and the modules aren't PythonPath by default.
+
+import sys
 from os.path import expanduser
 home = expanduser("~")
 desktop_rel_path = '/Desktop/MOOC_work/udemy/complete_python_and_postgres_dev_course/section6_movie_system'
 if home + desktop_rel_path not in sys.path:
     sys.path.insert(0, home+desktop_rel_path)
     
-    
-    
-    
-    
-from movie import Movie
+from movie import Movie # see add_movie()
+
+
+
 
 class User:
     '''
@@ -28,7 +29,7 @@ class User:
         return '<User {}>'.format(self.name)
             
     
-    def add_movie(self, name, genre) # my_user_object.add_movie(name, genre)
+    def add_movie(self, name, genre): # my_user_object.add_movie(name, genre)
         '''
         After importing the Movie class from movie module, 
         create a new Movie object, and by default it won't be watched.
@@ -52,3 +53,23 @@ class User:
         return a list of movies that the user has watched
         '''
         return list(filter(lambda movie: movie.watched, self.movies))
+    
+    def save_to_file(self):
+        with open('{}.txt'.format(home + desktop_rel_path + '/' + self.name), 'w') as f:
+            f.write(self.name + '\n')
+            for movie in self.movies:
+                f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))            
+                
+    def load_from_file(self, filename):
+        with open(filename, 'r') as f:
+            content = f.readlines()
+            username = content[0].rstrip()
+            movies = []
+            for line in content[1:]:
+                movie_data = line.rstrip('\n').split(',')
+                movies.append(Movie(movie_data[0], movie_data[1], movie_data[2] == 'True'))
+        user = User(username) 
+        user.movies = movies
+        return user
+        
+            
