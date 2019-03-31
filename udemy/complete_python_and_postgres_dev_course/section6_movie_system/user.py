@@ -58,9 +58,10 @@ class User:
         with open('{}.txt'.format(home + desktop_rel_path + '/' + self.name), 'w') as f:
             f.write(self.name + '\n')
             for movie in self.movies:
-                f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))            
+                f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))    
                 
-    def load_from_file(self, filename):
+    @classmethod # doesn't run on an individual object, but on the class itself. 
+    def load_from_file(cls, filename):
         with open(filename, 'r') as f:
             content = f.readlines()
             username = content[0].rstrip()

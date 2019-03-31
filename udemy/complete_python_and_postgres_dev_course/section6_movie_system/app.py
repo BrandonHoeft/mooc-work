@@ -10,8 +10,8 @@ if home + desktop_rel_path not in sys.path:
 #from movie import Movie # No longer need to import, because 
 from user import User
 
-user = User('Brandon')
-user = user.load_from_file(home + desktop_rel_path + '/Brandon.txt')
+#user = User('Brandon')
+user = User.load_from_file(home + desktop_rel_path + '/Brandon.txt')
 print(user.movies)
 #user.add_movie('The Matrix', 'Sci-Fi')
 #user.add_movie('Game Night', 'Comedy')
