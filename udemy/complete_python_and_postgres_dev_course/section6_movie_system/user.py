@@ -61,7 +61,7 @@ class User:
                 f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))    
                 
     @classmethod # doesn't run on an individual object, but on the class itself. 
-    def load_from_file(cls, filename):
+    def load_from_file(cls, filename): #cls stands for the User class.
         with open(filename, 'r') as f:
             content = f.readlines()
             username = content[0].rstrip()
@@ -69,7 +69,7 @@ class User:
             for line in content[1:]:
                 movie_data = line.rstrip('\n').split(',')
                 movies.append(Movie(movie_data[0], movie_data[1], movie_data[2] == 'True'))
-        user = User(username) 
+        user = cls(username) #cls stands for the User class.
         user.movies = movies
         return user
         
