@@ -25,3 +25,11 @@ class Movie:
             'genre': self.genre,
             'watched': self.watched
         }
+        
+    @classmethod
+    def from_json(cls, json_data):
+        '''
+        create a new Movie object from json data assuming the right keys
+        '''
+        return cls(json_data['name'], json_data['genre'], json_data['watched'])
+    

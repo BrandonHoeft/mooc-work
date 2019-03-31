@@ -89,9 +89,9 @@ class User:
         '''
         Return the json data in a format to load the data into a new User instance. 
         '''
-        user = cls(json_data['name'])
+        user = cls(json_data['name']) #cls stands for the User class.
         movies =[]
         for mov in json_data['movies']:
-            movies.append(Movie(mov['name'], mov['genre'], mov['watched']))
+            movies.append(Movie.from_json(mov)) # let the movie handle the json directly with its own method. So the User object doesn't have to be concerned at all about properties of a movie, and if those change.
         user.movies = movies
         return user
