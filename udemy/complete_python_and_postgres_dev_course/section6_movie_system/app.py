@@ -39,9 +39,11 @@ def menu():
                        "'d' to delete a movie, 'l to see the list of watched movies, or 'q' to save and quite")   
     
     if user_input == 'a':
-        pass
+        movie_name = input('add movie name:')
+        movie_genre = input('add movie genre: ')
+        user.add_movie(movie_name, movie_genre)
     if user_input == 's':
-        pass
+        
     if user_input == 'w':
         pass
     if user_input == 'd':
