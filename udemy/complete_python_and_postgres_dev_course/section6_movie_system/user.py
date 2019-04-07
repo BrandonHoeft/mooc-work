@@ -37,7 +37,8 @@ class User:
         '''
         movie = Movie(name, genre, False)
         self.movies.append(movie)
-        
+    
+    
     def delete_movie(self, name): 
         '''
         Delete movie from the movies list, self.movies. inside the filter(), 
@@ -54,12 +55,20 @@ class User:
         '''
         return list(filter(lambda movie: movie.watched, self.movies))
     
+    
+    def set_watched(self, movie_name):
+        for mov in self.movies:
+            if mov.name == movie_name:
+                mov.watched = True
+    
+    
     def save_to_file(self):
         with open('{}.txt'.format(home + desktop_rel_path + '/' + self.name), 'w') as f:
             f.write(self.name + '\n')
             for movie in self.movies:
                 f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))    
-                
+    
+            
     @classmethod # doesn't run on an individual object, but on the class itself. 
     def load_from_file(cls, filename): #cls stands for the User class.
         with open(filename, 'r') as f:
