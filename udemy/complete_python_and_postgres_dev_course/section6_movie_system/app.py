@@ -2,17 +2,19 @@
 # in which the user has watched them.
 
 import sys
-from os.path import expanduser, isfile
-home = expanduser("~")
+import os
+home = os.path.expanduser("~")
 desktop_rel_path = '/Desktop/MOOC_work/udemy/complete_python_and_postgres_dev_course/section6_movie_system'
 if home + desktop_rel_path not in sys.path:
     sys.path.insert(0, home+desktop_rel_path)
+#if os.getcwd() != home + desktop_rel_path:
+#    os.chdir(home + desktop_rel_path)
 from user import User
 import json # for importing json-like objects from file. 
 
 
 def file_exists(filename):
-    return isfile(filename)
+    return os.path.isfile(filename)
 
 
 def menu():
@@ -24,10 +26,11 @@ def menu():
         user = User.from_json(json_data)
     else:
         user = User(name)
-
+               
     user_input = input("Enter 'a' to add a movie, 's' to see the list of movies,"
                        "'w' to set a movie as watched, 'd' to delete a movie, 'l' to see the list of watched movies,"
-                       ", 'sv' to save or 'q' to quit: ")
+                       " 'sv' to save or 'q' to quit: ")
+    
     while user_input != 'q':
         if user_input == 'a':
             movie_name = input("Enter the movie name: ")
@@ -48,8 +51,7 @@ def menu():
         elif user_input == 'sv':
             with open(filename, 'w') as f:
                 json.dump(user.json(), f)
-
+        
         user_input = input("Enter 'a' to add a movie, 's' to see the list of movies,"
-                           "'w' to set a movie as watched, 'd' to delete a movie, 'l' to see the list of watched movies,"
-                           ", 'sv' to save or 'q' to quit: ")
-
+                       "'w' to set a movie as watched, 'd' to delete a movie, 'l' to see the list of watched movies,"
+                       " 'sv' to save or 'q' to quit: ")

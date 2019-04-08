@@ -1,3 +1,1 @@
-Brandon
-The Matrix,Sci-Fi,False
-Game Night,Comedy,False
+{"name": "Brandon", "movies": [{"name": "The Matrix", "genre": "Sci-Fi", "watched": false}, {"name": "Game Night", "genre": "Comedy", "watched": false}]}
