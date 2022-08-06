@@ -30,6 +30,9 @@ docker stop #serene_pete
 docker rm 123123
 docker rm serene_pete
 
+# delete all containers
+docker rm $(docker ps -aq)
+
 # remove images from disk
 # can't remove an image if you have running or stopped containers using that image
 docker rmi python:3.9-slim-buster
