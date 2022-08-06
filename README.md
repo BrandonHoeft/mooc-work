@@ -1,2 +1,2 @@
-# MOOC_work
-Code from MOOC platforms and projects on Udemy, Coursera, etc. 
+# MOOC Work
+Personal code work from massive open online platforms and projects I learn from on Udemy, Coursera, DE Zoomcamp, etc.
