@@ -13,6 +13,7 @@ docker run -i centos echo 'hello brandon'
 
 # interactive mode + attach a terminal. after container built, I will be inside the container with a python prompt up!
 # -t option: attaches me to the container's terminal so I can interact
+# https://stackoverflow.com/questions/30137135/confused-about-docker-t-option-to-allocate-a-pseudo-tty
 docker run -it python:3.7-alpine
 
 # PORT MAPPING -p flag
