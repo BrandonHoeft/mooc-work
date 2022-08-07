@@ -1,6 +1,6 @@
-# To Run this Dockerfile: a docker host can build image by:
+# To Run this Dockerfile: a 2_docker_sql host can build image by:
 # 1: be in directory where Dockerfile is defined
-# 2. `docker build -t <new_image_name>:<tag_name> .` The `.` will build the image in current dir
+# 2. `2_docker_sql build -t <new_image_name>:<tag_name> .` The `.` will build the image in current dir
 
 # the name of the base image to use
 FROM python:3.9
