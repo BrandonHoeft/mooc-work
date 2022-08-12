@@ -26,6 +26,9 @@ docker run -d
 # stop a running <unique name of container>
 docker stop #serene_pete
 
+# start running 1 or more stopped containers again
+docker start #serene_pete
+
 # reclaim disk space of dead containers. pass name of partial id of the container
 docker rm 123123
 docker rm serene_pete
