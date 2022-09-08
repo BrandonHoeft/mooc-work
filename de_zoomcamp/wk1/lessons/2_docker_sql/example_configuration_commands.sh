@@ -12,9 +12,26 @@ docker run -it \
 pgcli -h localhost -p 5432 -u root -d <name_of_database>
 
 # example command DDL to throw into pgcli before loading with pandas
-create table "yeet" ("VendorID" INTEGER, "tpep_pickup_datetime" TEXT, "tpep_dropoff_datetime" TEXT, "passenger_count" INTEGER, "trip_distance"
-  REAL, "RatecodeID" INTEGER, "store_and_fwd_flag" TEXT, "PULocationID" INTEGER, "DOLocationID" INTEGER, "payment_type" INTEGER, "fare_amount" REAL, "extra" REAL, "mt
- a_tax" REAL, "tip_amount" REAL, "tolls_amount" REAL, "improvement_surcharge" REAL, "total_amount" REAL, "congestion_surcharge" REAL)
+CREATE TABLE "yeet" (
+  "VendorID" INTEGER,
+  "tpep_pickup_datetime" TIMESTAMP,
+  "tpep_dropoff_datetime" TIMESTAMP,
+  "passenger_count" INTEGER,
+  "trip_distance" REAL,
+  "RatecodeID" INTEGER,
+  "store_and_fwd_flag" TEXT,
+  "PULocationID" INTEGER,
+  "DOLocationID" INTEGER,
+  "payment_type" INTEGER,
+  "fare_amount" REAL,
+  "extra" REAL,
+  "mta_tax" REAL,
+  "tip_amount" REAL,
+  "tolls_amount" REAL,
+  "improvement_surcharge" REAL,
+  "total_amount" REAL,
+  "congestion_surcharge" REAL
+)
 
 
 # container + docker network + container name (pg-db-container) so pgadmin on
@@ -22,14 +39,15 @@ create table "yeet" ("VendorID" INTEGER, "tpep_pickup_datetime" TEXT, "tpep_drop
 
 docker network create pg-network
 
+# $(pwd) should be in ~/PycharmProjects/mooc-work
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
     -e POSTGRES_DB="ny_taxi" \
-    -v $(pwd)/ny_taxi_pg_data:/var/lib/postgresql/data:rw \
+    -v $(pwd)/pg_data_ny_taxi:/var/lib/postgresql/data:rw \
     -p 5432:5432 \
     --network=pg-network \
-    --name pg-db-container \
+    --name my-postgres \
     postgres:13
 
 # pgadmin4: https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
@@ -38,5 +56,5 @@ docker run -it \
     -e 'PGADMIN_DEFAULT_PASSWORD=root' \
     -p 8080:80 \
     --network=pg-network \
-    --name pgadmin \
+    --name my-pgadmin \
     dpage/pgadmin4
