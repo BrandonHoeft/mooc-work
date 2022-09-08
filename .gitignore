@@ -1,0 +1,6 @@
+.DS_Store
+
+.idea/*
+
+# postgres file structures from container
+pg_data_ny_taxi
