@@ -13,6 +13,9 @@ print(f'dimensions of: {df.shape[0]} rows and {df.shape[1]} columns')
 df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
 df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
 
+# create a SQL DDL statement to use as example for loading to postgres
+print(pd.io.sql.get_schema(df, name="yeet"))
+
 # create engine to local postgres container
 engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 
@@ -23,4 +26,4 @@ query = """select * from public.yeet order by total_amount desc limit 25;"""
 
 returned_df = pd.read_sql(query, con=engine)
 
-print("hello")
+print(returned_df.shape)
