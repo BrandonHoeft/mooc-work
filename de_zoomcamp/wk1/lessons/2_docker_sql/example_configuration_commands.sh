@@ -58,3 +58,18 @@ docker run -it \
     --network=pg-network \
     --name my-pgadmin \
     dpage/pgadmin4
+
+
+# running the ingest_data.py pipeline script (targeting a pg container like above)
+URL = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+
+python -B ingest_data.py /
+  --user=root /
+  --pw=root /
+  --host=localhost /
+  --port=5432 /
+  --database=ny_taxi /
+  --tablename=taxi_yeet_yeet /
+  --url=${URL}
+
+
