@@ -61,7 +61,9 @@ docker run -it \
 
 
 # running the ingest_data.py pipeline script (targeting a pg container like above)
-URL = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+
+cd ~/PycharmProjects/mooc-work/de_zoomcamp/wk1/lessons/2_docker_sql
 
 python -B ingest_data.py \
   --user=root \
