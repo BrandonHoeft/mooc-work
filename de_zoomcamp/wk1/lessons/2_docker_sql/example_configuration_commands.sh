@@ -60,9 +60,9 @@ docker run -it \
     dpage/pgadmin4
 
 
-# running the ingest_data.py pipeline script (targeting a pg container like above)
+# Running the ingest_data.py pipeline script from a shell
+# assumptions: have an active py venv, and running a container
 URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
-
 cd ~/PycharmProjects/mooc-work/de_zoomcamp/wk1/lessons/2_docker_sql
 
 python -B ingest_data.py \
@@ -75,3 +75,22 @@ python -B ingest_data.py \
   --url=${URL}
 
 
+# Dockerize (dockerfile) the ingest_data.py script as an image
+# (https://youtu.be/B1WwATwf-vY?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&t=713)
+cd ~/PycharmProjects/mooc-work/de_zoomcamp/wk1/lessons/2_docker_sql # be in dir of Dockerfile before `docker build`
+docker build --tag taxi_ingestion:v1 .
+
+# run the built image
+# https://youtu.be/B1WwATwf-vY?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&t=880
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+
+docker run -it \
+  --network=pg-network \
+  taxi_ingestion:v1 \
+    --user=root \
+    --pw=root \
+    --host=my-postgres \
+    --port=5432 \
+    --database=ny_taxi \
+    --tablename=taxi_yeet_yeet \
+    --url=${URL}
