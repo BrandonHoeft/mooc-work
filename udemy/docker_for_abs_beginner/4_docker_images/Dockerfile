@@ -3,7 +3,7 @@
 # 2. improve the ease of shipping and deploying your custom application
 
 # Thought process of building your own docker image:
-# What you might you need built if you want to deploy the application manually?
+# What you might need built if you want to deploy the application manually?
 # Think about those steps in the correct sequential order. When Docker builds images
 # it does so in a layered way, each line of instructions, creates a new layer in the
 # docker image, with just the changes from previous layer. For example you need
@@ -16,7 +16,7 @@ FROM ubuntu
 
 # instructs to run a command on the base image
 # Example: Update the apt repo, install dependencies using apt
-RUN apt-get udate && apt-get -y install python
+RUN apt-get update && apt-get -y install python
 # Example: install python dependencies
 RUN pip install flask flask-mysql
 
