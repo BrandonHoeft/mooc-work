@@ -1,5 +1,5 @@
 services:
-  pg-database:
+  pgdatabase:
     image: postgres:13
     environment:
       - name=value
@@ -7,10 +7,10 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=ny_taxi
     volumes:
-      - "./pg_data_ny_taxi:/var/lib/postgresql/data:rw"
+      - "/Users/bhoeft/PycharmProjects/mooc-work/pg_data_ny_taxi:/var/lib/postgresql/data:rw"
     ports:
       - "5432:5432"
-  pg-admin:
+  pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
